@@ -1,3 +1,26 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+body {
+  font-family: 'Cinzel', serif;
+}
+
+header {
+  background: url(../img/GoT.png);
+  background-size: cover;
+  background-position: center;
+  min-height: 1000px;
+}
+
+.trans {
+  background: black;
+  opacity: .8;
+  height: 250px;
+}
+
+@media screen and (max-width: 670px) {
+  header {
+      min-height: 500px;
+  }
+}
