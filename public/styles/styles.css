@@ -2,15 +2,35 @@
   line-height: 2.5;
 }
 
-body {
+html {
   font-family: 'Cinzel', serif;
 }
 
-header {
+body {
   background: url(../img/GoT.png);
   background-size: cover;
   background-position: center;
-  min-height: 1000px;
+  /* min-height: 1000px; */
+
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+#theoryDiv {
+  background: rgba(0, 0, 0, 0.493);
+  min-height: 100px;
+  padding: 15px;
+}
+
+#pollDiv {
+  background: rgba(0, 0, 0, 0.493);
+  /* height: 500px; */
+  padding: 15px;
 }
 
 .trans {
@@ -19,8 +39,34 @@ header {
   height: 250px;
 }
 
+.sideNav {
+  background: rgba(0, 0, 0, 0.397);
+  /* background: black; */
+}
+
+.menuButton {
+  color: #881414;
+  margin-left: 15px;
+}
+
+.burgerButton {
+  padding: 20px;
+}
+
+.gotTheoryLogo {
+  font-size: 32px;
+}
+
 @media screen and (max-width: 670px) {
-  header {
-      min-height: 500px;
+  .gotTheoryLogo {
+    font-size: 26px;
+  }
+  
+  .pollText {
+    font-size: 18px;
+  }
+
+  .sideNav {
+    background: black;
   }
 }
