@@ -18,7 +18,7 @@ module.exports = function(app) {
     // In this case, just db.Post
     db.Author.findOne({
       where: {
-        id: req.params.id
+        uid: req.params.id
       },
       include: [db.Post]
     }).then(function(dbAuthor) {
@@ -41,5 +41,4 @@ module.exports = function(app) {
       res.json(dbAuthor);
     });
   });
-
 };

@@ -1,4 +1,16 @@
 $(document).ready(function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      uid = user.uid;
+      userName = user.displayName;
+      getPosts();
+    } else {
+      //no user signed in
+      uid = null;
+      window.location.replace("index.html");
+    }
+  });
+
   /* global moment */
 
   // blogContainer holds all of our posts
@@ -10,19 +22,16 @@ $(document).ready(function() {
   // Variable to hold our posts
   var posts;
 
-  // The code below handles the case where we want to get blog posts for a specific author
-  // Looks for a query param in the url for author_id
-  var url = window.location.search;
-  var authorId;
-  if (url.indexOf("?author_id=") !== -1) {
-    authorId = url.split("=")[1];
-    getPosts(authorId);
+  function getAuthor(uid) {
+    authorId = uid || "";
+    $.get("/api/posts" + uid, function(data) {
+      if (!posts || !posts.length) {
+        displayEmpty(author);
+      } else {
+        initializeRows();
+      }
+    });
   }
-  // If there's no authorId we just get all posts as usual
-  else {
-    getPosts();
-  }
-
 
   // This function grabs posts from the database and updates the view
   function getPosts(author) {
@@ -35,8 +44,7 @@ $(document).ready(function() {
       posts = data;
       if (!posts || !posts.length) {
         displayEmpty(author);
-      }
-      else {
+      } else {
         initializeRows();
       }
     });
@@ -47,10 +55,9 @@ $(document).ready(function() {
     $.ajax({
       method: "DELETE",
       url: "/api/posts/" + id
-    })
-      .then(function() {
-        getPosts(postCategorySelect.val());
-      });
+    }).then(function() {
+      getPosts(postCategorySelect.val());
+    });
   }
 
   // InitializeRows handles appending all of our constructed post HTML inside blogContainer
@@ -84,8 +91,7 @@ $(document).ready(function() {
     newPostAuthor.css({
       float: "right",
       color: "blue",
-      "margin-top":
-      "-10px"
+      "margin-top": "-10px"
     });
     var newPostCardBody = $("<div>");
     newPostCardBody.addClass("card-body");
@@ -133,9 +139,13 @@ $(document).ready(function() {
     blogContainer.empty();
     var messageH2 = $("<h2>");
     messageH2.css({ "text-align": "center", "margin-top": "50px" });
-    messageH2.html("No posts yet" + partial + ", navigate <a href='/cms" + query +
-    "'>here</a> in order to get started.");
+    messageH2.html(
+      "No posts yet" +
+        partial +
+        ", navigate <a href='/cms" +
+        query +
+        "'>here</a> in order to get started."
+    );
     blogContainer.append(messageH2);
   }
-
 });
