@@ -36,26 +36,40 @@
 
   <body>
     <header>
-      <nav class="nav-wrapper black">
-        <div class="container">
-          <a href="" class="sidenav-trigger" data-target="mobile-menu">
-            <i class="material-icons">menu</i>
-          </a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="/theory">Theories</a></li>
-            <li>|</li>
-            <li><a href="/characters">Characters</a></li>
-            <li>|</li>
-            <li><a href="/api">API</a></li>
-          </ul>
-          <ul class="sidenav black" id="mobile-menu">
-            <h3>Menu</h3>
-            <li><a href="/theory" class="white-text">Theories</a></li>
-            <li><a href="/characters" class="white-text">Characters</a></li>
-            <li><a href="/api" class="white-text">API</a></li>
-          </ul>
-        </div>
-      </nav>
+        <nav class="nav-wrapper">
+            <ul id="dropdown1" class="dropdown-content black">
+                <li><a href="/theory" class="white-text">Write Theory</a></li>
+                <li><a href="/api" class="white-text">API</a></li>
+                <li><a href="#" id="myAccount" class="white-text">My Account</a></li>
+                <li><a href="/" class="white-text">Logout</a></li>
+            </ul>
+            <nav>
+                <div class="nav-wrapper black">
+                    <a href="" class="sidenav-trigger" data-target="mobile-menu">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="/main.html" class="white-text">Home</a></li>
+                        <li><a href="/theory" class="white-text">Theories</a></li>
+                        <li><a href="/characters" class="white-text">Characters</a></li>
+                        <!-- Dropdown Trigger -->
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">
+                                <div id="dropDownMenu"></div><i class="material-icons right">arrow_drop_down</i>
+                            </a></li>
+                    </ul>
+                </div>
+                </div>
+
+                <ul class="sidenav black" id="mobile-menu">
+                    <h3 class="menuButton">Menu</h3>
+                    <li><a href="/main.html" class="white-text">Home</a></li>
+                    <li><a href="/theory" class="white-text">Theories</a></li>
+                    <li><a href="/characters" class="white-text">Characters</a></li>
+                    <li><a href="/api" class="white-text">API</a></li>
+                    <li><a href="#" id="myAccount" class="white-text">My Account</a></li>
+                    <li><a href="/" class="white-text">Logout</a></li>
+                </ul>
+            </nav>
 
       <div class="container white-text center section">
         <div class="row">
@@ -68,11 +82,28 @@
                 various theories and discuss your thoughts as we near the end of
                 the series.
               </h5>
+              <a class="waves-effect btn black writeTheory"><i class="material-icons left" id="pencil">create</i>Write Theory</a>
             </div>
           </div>
         </div>
       </div>
     </header>
+
+    <main></main>
+
+    <footer class="page-footer black">
+        <div class="container">
+            <div class="row">
+                <div class="col l12 m12 s12">
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container center">
+                © 2019 Copyright
+            </div>
+        </div>
+    </footer>
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -83,9 +114,7 @@
     <script>
       $(document).ready(function() {
         $(".sidenav").sidenav();
-        $(".parallax").parallax();
-        $(".materialboxed").materialbox();
-        $(".scrollspy").scrollSpy();
+        $(".dropdown-trigger").dropdown();
       });
     </script>
     <script

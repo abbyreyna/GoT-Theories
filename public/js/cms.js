@@ -18,7 +18,7 @@ $(document).ready(function() {
   var cmsForm = $("#cms");
   var authorSelect = $("#author");
   // Adding an event listener for when the form is submitted
-  $(cmsForm).on("submit", handleFormSubmit);
+  $(cmsForm).on("click", handleFormSubmit);
   // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
   var url = window.location.search;
   var postId;
@@ -47,9 +47,9 @@ $(document).ready(function() {
     // Wont submit the post if we are missing a body, title, or author
     if (
       !titleInput.val().trim() ||
-      !bodyInput.val().trim() ||
-      !authorSelect.val()
+      !bodyInput.val().trim()
     ) {
+      console.log("found nothing");
       return;
     }
     // Constructing a newPost object to hand to the database
@@ -58,7 +58,7 @@ $(document).ready(function() {
       body: bodyInput.val().trim(),
       AuthorId: authorId
     };
-
+    console.log(newPost);
     // If we're updating a post run updatePost to update a post
     // Otherwise run submitPost to create a whole new post
     if (updating) {
@@ -105,10 +105,7 @@ $(document).ready(function() {
 
   // A function to get Authors and then render our list of Authors
   function getAuthors(userName, uid) {
-    var listOption = $("<option>");
-    listOption.attr("value", author.id);
-    listOption.text(userName);
-    $("#author").append(listOption);
+    $("#author").html("<option>" + userName + "</option>");
   }
 
   // Update a given post, bring user to the blog page when done
