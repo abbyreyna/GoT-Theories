@@ -33,4 +33,10 @@ module.exports = function(app) {
   app.get("/theory", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/theory.html"));
   });
+
+  // character route loads characters.html
+  app.get("/characters", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/characters.html"));
+  });
+
 };
