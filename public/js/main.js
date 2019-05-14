@@ -12,7 +12,6 @@ $(document).ready(function() {
       uid = user.uid;
       userName = user.displayName;
       checkUserExists(userName, uid);
-      myAccount(userName);
     } else {
       //no user signed in
       uid = null;
@@ -51,72 +50,3 @@ $(document).ready(function() {
       console.log("Added new authors");
     });
   };
-
-        //ReAuthenticate User && Email/PW update
-      //   const opw = oldpw.val().trim();
-      //   if (opw !== "") {
-      //     firebase.auth().onAuthStateChanged(function(cuser) {
-      //       if (cuser) {
-      //         //ReAuth
-      //         let cred = firebase.auth.EmailAuthProvider.credential(
-      //           cuser.email,
-      //           opw
-      //         );
-      //         cuser
-      //           .reauthenticateAndRetrieveDataWithCredential(cred)
-      //           .then(function() {
-      //             console.log("USER REAUTHENTICATED!!!!!");
-      //             //change email
-      //             let einput = email.val().trim();
-      //             if (einput.length > 0) {
-      //               cuser
-      //                 .updateEmail(einput)
-      //                 .then(function() {
-      //                   //console.log("USER EMAIL HAS BEEN CHANGED TO: " + einput);
-      //                 })
-      //                 .catch(function(e) {
-      //                   console.log(e);
-      //                 });
-      //             }
-      //           })
-      //           .catch(function(e) {
-      //             error(e.message);
-      //           })
-      //           .then(function() {
-      //             //reAuth in case of new email
-      //             const credpw = firebase.auth.EmailAuthProvider.credential(
-      //               cuser.email,
-      //               opw
-      //             );
-      //             cuser
-      //               .reauthenticateAndRetrieveDataWithCredential(credpw)
-      //               .then(function() {
-      //                 console.log("USER REAUTHENTICATED!!!!!");
-      //                 //change password
-      //                 let pinput = newpw.val().trim();
-      //                 if (pinput.length > 0) {
-      //                   cuser.updatePassword(pinput);
-      //                   //console.log("USER PASSWORD HAS BEEN CHANGED TO: " + pinput);
-      //                 }
-      //               });
-      //           });
-      //       } else {
-      //         console.log("SOMETHING WENT WRONG");
-      //       }
-      //     });
-      //   }
-
-      //   $(this)
-      //     .parent()
-      //     .parent()
-      //     .parent()
-      //     .parent()
-      //     .remove();
-      //   body.css({
-      //     opacity: "1",
-      //     "pointer-events": "auto"
-      //   });
-
-      //   refresh();
-      // });
-});

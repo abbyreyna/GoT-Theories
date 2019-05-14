@@ -78,13 +78,22 @@ $(document).ready(function() {
     var newPostCard = $("<div>");
     newPostCard.addClass("card");
     var newPostCardHeading = $("<div>");
-    newPostCardHeading.addClass("card-header");
+    newPostCardHeading.addClass("card-title");
     var deleteBtn = $("<button>");
     deleteBtn.text("x");
-    deleteBtn.addClass("delete btn btn-danger");
+    deleteBtn.addClass("delete btn black waves-effect writeTheory");
     var editBtn = $("<button>");
     editBtn.text("EDIT");
-    editBtn.addClass("edit btn btn-info");
+    editBtn.addClass("edit btn btn-info black waves-effect writeTheory");
+    var upVoteBtn = $("<button>");
+    upVoteBtn.addClass("upVote btn black waves-effect writeTheory");
+    upVoteBtn.html('<i class="material-icons">arrow_upward</i>');
+    var dwnVoteBtn = $("<button>");
+    dwnVoteBtn.addClass("dwnVote btn black waves-effect writeTheory");
+    dwnVoteBtn.html('<i class="material-icons">arrow_downward</i>');
+    var chatBtn = $("<button>");
+    chatBtn.addClass("chatBtn btn black waves-effect writeTheory");
+    chatBtn.html('<i class="material-icons">comment</i>');
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostAuthor = $("<h6>");
@@ -96,7 +105,7 @@ $(document).ready(function() {
       "padding": "10px"
     });
     var newPostCardBody = $("<div>");
-    newPostCardBody.addClass("card-body");
+    newPostCardBody.addClass("card-content");
     var newPostBody = $("<p>");
     newPostTitle.text(post.title + " ");
     newPostBody.text(post.body);
@@ -104,6 +113,9 @@ $(document).ready(function() {
     newPostTitle.append(newPostDate);
     newPostCardHeading.append(deleteBtn);
     newPostCardHeading.append(editBtn);
+    newPostCardHeading.append(upVoteBtn);
+    newPostCardHeading.append(dwnVoteBtn);
+    newPostCardHeading.append(chatBtn);
     newPostCardHeading.append(newPostTitle);
     newPostCardHeading.append(newPostAuthor);
     newPostCardBody.append(newPostBody);
@@ -132,7 +144,5 @@ $(document).ready(function() {
   }
 
   // This function displays a message when there are no posts
-  function displayEmpty(id) {
-    
-  }
+  function displayEmpty(id) {}
 });
