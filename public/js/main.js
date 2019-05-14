@@ -27,7 +27,6 @@ $(document).ready(function() {
 
   var checkUserExists = function(userName, uid) {
     $.get("/api/authors/" + uid, function(e) {
-      console.log(e);
       if (e !== null) {
       } else {
         createAuthor(userName, uid);
@@ -50,3 +49,34 @@ $(document).ready(function() {
       console.log("Added new authors");
     });
   };
+
+  // Our CMS Functions
+
+  $(".edit").on("click", function(event) {
+    handlePostEdit(event.target.value);
+  });
+  $(".delete").on("click", function(event) {
+    var temp = event.target.value;
+    handlePostDelete(temp);
+  });
+
+  // This function does an API call to delete posts
+  function deletePost(id) {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/posts/" + id
+    }).then(function() {
+      getPosts(postCategorySelect.val());
+    });
+  }
+
+  // This function figures out which post we want to delete and then calls deletePost
+  function handlePostDelete(id) {
+    deletePost(id);
+  }
+
+  // This function figures out which post we want to edit and takes it to the appropriate url
+  function handlePostEdit(id) {
+    window.location.href = "/cms?post_id=" + id;
+  }
+});
