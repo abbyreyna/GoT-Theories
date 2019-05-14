@@ -3,7 +3,7 @@
 }
 
 html {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
 }
 
 body {
@@ -73,21 +73,21 @@ main {
 }
 
 /* label focus color */
-.input-field input[type=text]:focus + label {
+.input-field input[type="text"]:focus + label {
   color: #000;
 }
 /* label underline focus color */
-.input-field input[type=text]:focus {
+.input-field input[type="text"]:focus {
   border-bottom: 1px solid #000;
   box-shadow: 0 1px 0 0 #000;
 }
 /* valid color */
-.input-field input[type=text].valid {
+.input-field input[type="text"].valid {
   border-bottom: 1px solid #000;
   box-shadow: 0 1px 0 0 #000;
 }
 /* invalid color */
-.input-field input[type=text].invalid {
+.input-field input[type="text"].invalid {
   border-bottom: 1px solid #000;
   box-shadow: 0 1px 0 0 #000;
 }
@@ -100,11 +100,16 @@ main {
   margin-top: 40px;
 }
 
+.card {
+  background: rgba(0, 0, 0, 0.493);
+  color: #fff;
+}
+
 @media screen and (max-width: 670px) {
   .gotTheoryLogo {
     font-size: 26px;
   }
-  
+
   .pollText {
     font-size: 18px;
   }
