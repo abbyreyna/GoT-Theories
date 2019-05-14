@@ -96,12 +96,13 @@ $(document).ready(function() {
     chatBtn.html('<i class="material-icons">comment</i>');
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
-    var newPostAuthor = $("<h5>");
+    var newPostAuthor = $("<h6>");
     newPostAuthor.text("Written by: " + post.Author.author_name);
     newPostAuthor.css({
       float: "right",
-      color: "blue",
-      "margin-top": "-10px"
+      color: "#881414",
+      "margin-top": "-10px",
+      "padding": "10px"
     });
     var newPostCardBody = $("<div>");
     newPostCardBody.addClass("card-content");

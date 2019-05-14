@@ -64,6 +64,10 @@ main {
   color: #881414;
 }
 
+.commentButton {
+  margin-top: -15px;
+}
+
 #pencil {
   line-height: 35px;
 }
