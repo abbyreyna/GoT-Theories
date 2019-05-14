@@ -108,6 +108,9 @@ main {
   background: rgba(0, 0, 0, 0.493);
   color: #fff;
 }
+.small {
+  font-size: 12px;
+}
 
 @media screen and (max-width: 670px) {
   .gotTheoryLogo {

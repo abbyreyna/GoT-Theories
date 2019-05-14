@@ -4,7 +4,7 @@ $(document).ready(function() {
       uid = user.uid;
       userName = user.displayName;
       getAuthors(userName, uid);
-      checkUserExists(userName, uid);
+      checkUserExists(uid);
     } else {
       //no user signed in
       uid = null;
@@ -16,9 +16,8 @@ $(document).ready(function() {
   var bodyInput = $("#body");
   var titleInput = $("#title");
   var cmsForm = $("#cms");
-  var authorSelect = $("#author");
   // Adding an event listener for when the form is submitted
-  $(cmsForm).on("click", handleFormSubmit);
+  $(cmsForm).on("submit", handleFormSubmit);
   // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
   var url = window.location.search;
   var postId;
@@ -34,7 +33,7 @@ $(document).ready(function() {
   }
 
   // Otherwise if we have an author_id in our url, preset the author select box to be our Author
-  var checkUserExists = function(userName, uid) {
+  var checkUserExists = function(uid) {
     $.get("/api/authors/" + uid, function(e) {
       authorId = e.id;
     });
@@ -45,10 +44,7 @@ $(document).ready(function() {
   function handleFormSubmit(event) {
     event.preventDefault();
     // Wont submit the post if we are missing a body, title, or author
-    if (
-      !titleInput.val().trim() ||
-      !bodyInput.val().trim()
-    ) {
+    if (!titleInput.val().trim() || !bodyInput.val().trim()) {
       console.log("found nothing");
       return;
     }
@@ -104,7 +100,7 @@ $(document).ready(function() {
   }
 
   // A function to get Authors and then render our list of Authors
-  function getAuthors(userName, uid) {
+  function getAuthors(userName) {
     $("#author").html("<option>" + userName + "</option>");
   }
 

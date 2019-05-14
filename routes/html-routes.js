@@ -5,6 +5,7 @@
 // Dependencies
 // =============================================================
 var path = require("path");
+var db = require("../models");
 
 // Routes
 // =============================================================
@@ -32,7 +33,11 @@ module.exports = function(app) {
   });
 
   app.get("/theory", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/theory.html"));
+    db.Post.findAll({}).then(function(data) {
+      var temp = { posts: data };
+      // console.log(temp.burgers);
+      res.render("theory", temp);
+    });
   });
 
   // character route loads characters.html
