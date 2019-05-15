@@ -40,6 +40,24 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/comment?:id", function(req, res) {
+    var postId = req.params.id;
+    res.json(res);
+    // if (url.indexOf("?post_id=") !== -1) {
+    //   postId = url.split("=")[1];
+    // }
+    console.log(postId);
+
+    // db.Comment.findOne({
+    //   where: {
+    //     postId: postId
+    //   },
+    //   include: [db.Author]
+    // }).then(function(dbPost) {
+    //   res.json(dbPost);
+    // });
+  });
+
   // character route loads characters.html
   app.get("/characters", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/characters.html"));
