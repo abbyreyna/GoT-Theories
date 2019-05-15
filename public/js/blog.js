@@ -75,10 +75,17 @@ $(document).ready(function() {
     console.log(post);
     var formattedDate = new Date(post.createdAt);
     formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-    var newPostCard = $("<div>");
-    newPostCard.addClass("card");
-    var newPostCardHeading = $("<div>");
-    newPostCardHeading.addClass("card-title");
+
+    var divCard = $("<div class='card'>");
+    var cardHeader = $("<div class='card-content'>");
+    var titleSpan = $("<span class='card-title activator white-text'>");
+    var cardReveal = $("<div class='card-reveal'>");
+    var revealBody = $("<p>");
+
+    // var newPostCard = $("<div>");
+    // newPostCard.addClass("card");
+    // var newPostCardHeading = $("<div>");
+    // newPostCardHeading.addClass("card-title");
     var deleteBtn = $("<button>");
     deleteBtn.text("x");
     deleteBtn.addClass("delete btn black waves-effect writeTheory");
@@ -94,34 +101,41 @@ $(document).ready(function() {
     var chatBtn = $("<button>");
     chatBtn.addClass("chatBtn btn black waves-effect writeTheory");
     chatBtn.html('<i class="material-icons">comment</i>');
-    var newPostTitle = $("<h2>");
-    var newPostDate = $("<small>");
-    var newPostAuthor = $("<h5>");
-    newPostAuthor.text("Written by: " + post.Author.author_name);
-    newPostAuthor.css({
-      float: "right",
-      color: "blue",
-      "margin-top": "-10px"
-    });
-    var newPostCardBody = $("<div>");
-    newPostCardBody.addClass("card-content");
-    var newPostBody = $("<p>");
-    newPostTitle.text(post.title + " ");
-    newPostBody.text(post.body);
-    newPostDate.text(formattedDate);
-    newPostTitle.append(newPostDate);
-    newPostCardHeading.append(deleteBtn);
-    newPostCardHeading.append(editBtn);
-    newPostCardHeading.append(upVoteBtn);
-    newPostCardHeading.append(dwnVoteBtn);
-    newPostCardHeading.append(chatBtn);
-    newPostCardHeading.append(newPostTitle);
-    newPostCardHeading.append(newPostAuthor);
-    newPostCardBody.append(newPostBody);
-    newPostCard.append(newPostCardHeading);
-    newPostCard.append(newPostCardBody);
-    newPostCard.data("post", post);
-    return newPostCard;
+
+    revealBody.text(post.body);
+    titleSpan.text(post.title);
+    titleSpan.append(revealBody);
+    cardHeader.append(titleSpan);
+    divCard.append(cardHeader);
+    return divCard;
+    // var newPostTitle = $("<h2>");
+    // var newPostDate = $("<small>");
+    // var newPostAuthor = $("<h5>");
+    // newPostAuthor.text("Written by: " + post.Author.author_name);
+    // newPostAuthor.css({
+    //   float: "right",
+    //   color: "blue",
+    //   "margin-top": "-10px"
+    // });
+    // var newPostCardBody = $("<div>");
+    // newPostCardBody.addClass("card-content");
+    // var newPostBody = $("<p>");
+    // newPostTitle.text(post.title + " ");
+    // newPostBody.text(post.body);
+    // newPostDate.text(formattedDate);
+    // newPostTitle.append(newPostDate);
+    // newPostCardHeading.append(deleteBtn);
+    // newPostCardHeading.append(editBtn);
+    // newPostCardHeading.append(upVoteBtn);
+    // newPostCardHeading.append(dwnVoteBtn);
+    // newPostCardHeading.append(chatBtn);
+    // newPostCardHeading.append(newPostTitle);
+    // newPostCardHeading.append(newPostAuthor);
+    // newPostCardBody.append(newPostBody);
+    // newPostCard.append(newPostCardHeading);
+    // newPostCard.append(newPostCardBody);
+    // newPostCard.data("post", post);
+    // return newPostCard;
   }
 
   // This function figures out which post we want to delete and then calls deletePost
