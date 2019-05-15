@@ -1,0 +1,16 @@
+Text here
+{{#each comments}}
+<div class="post card">
+    <div class="timeCreated">{{this.createdAt}}</div>
+    <div class="card-title">{{this.title}}</div>
+    <div class="card-content">
+        <span>{{this.body}}</span>
+
+        <div class="voting center">
+            <button class="waves-effect btn black center writeTheory edit" id="edit" value="{{this.id}}">Edit</button>
+            <button class="waves-effect btn black center writeTheory delete" id="delete" value="{{this.id}}">X</button>
+        </div>
+
+    </div>
+</div>
+{{/each}}
