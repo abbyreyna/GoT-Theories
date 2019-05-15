@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-<link rel="stylesheet" href="./styles/styles.css" />
-
 {{> comp/nav}}
 
 <main>
@@ -14,39 +11,24 @@
                                 href="/theory"><i class="material-icons left">arrow_back</i>Return to Theory</a></div>
                         <div id="theoriesGoHere" class="section">
                             <div class="row section">
-                                <div id="postId col s12">Post # - <span class="postIdNumber"></span> <span
-                                        class="postTitle"></span></div>
 
-                                {{#each comments}}
-                                {{@key}}: {{this}}
+
+
 
                                 <div class="post card">
-                                    <div class="timeCreated">{{this.createdAt}}</div>
-                                    <div class="card-title">{{this.title}}</div>
+                                    <div class="timeCreated">{{Comment.Post.createdAt}}</div>
+                                    <div class="card-title">{{Post.title}}</div>
                                     <div class="card-content">
-                                        <span>{{this.body}}</span>
-
-                                        <div class="voting center">
-                                            <button class="waves-effect btn black center writeTheory edit" id="edit"
-                                                value="{{this.id}}">Edit</button>
-                                            <button class="waves-effect btn black center writeTheory delete" id="delete"
-                                                value="{{this.id}}">X</button>
-                                        </div>
+                                        <span>{{Post.body}}</span>
 
                                     </div>
                                 </div>
-                                {{/each}}
+
+                                {{> comp/comments comments=Comment}}
 
                             </div>
                             <a class="waves-effect btn black writeTheory right commentButton modal-trigger"
                                 href="#modal3"><i class="material-icons right">chat_bubble_outline</i>Comment</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l3 m3 s12">
-                    <div id="pollDiv" class="white-text center section">
-                        <span class="pollText">Who Will Win The Throne?</span>
-                        <div id="pollGoesHere">
                         </div>
                     </div>
                 </div>
@@ -87,8 +69,9 @@
 
 <!-- firebase -->
 <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-<script src="js/firebase.js"></script>
-<script src="js/comment.js" type="text/javascript"></script>
+<script src="../js/firebase.js"></script>
+<script src="../js/comment.js" type="text/javascript"></script>
+<script src="../js/main.js" type="text/javascript"></script>
 
 
 <script>
@@ -100,4 +83,3 @@
 
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
