@@ -9,12 +9,16 @@
             <div class="row">
                 <div class="col l9 m9 s12">
                     <div id="theoryDiv" class="white-text center">
-                        <span class="gotTheoryLogo">GoT Theories?</span>
+                        <span class="gotTheoryLogo">GoT Comments?</span>
                         <div id="theoryModal"><a class="waves-effect btn modal-trigger black left writeTheory"
-                                href="#modal1"><i class="material-icons left">create</i>Write Theory</a></div>
+                                href="/theory"><i class="material-icons left">arrow_back</i>Return to Theory</a></div>
                         <div id="theoriesGoHere" class="section">
                             <div class="row section">
-                                {{#each posts}}
+                                <div id="postId col s12">Post # - <span class="postIdNumber"></span> <span
+                                        class="postTitle"></span></div>
+
+                                {{#each comments}}
+                                {{@key}}: {{this}}
 
                                 <div class="post card">
                                     <div class="timeCreated">{{this.createdAt}}</div>
@@ -23,14 +27,8 @@
                                         <span>{{this.body}}</span>
 
                                         <div class="voting center">
-                                            <button class="waves-effect btn black center writeTheory upVote">Up
-                                                Vote</button>
-                                            <button class="waves-effect btn black center writeTheory dwnVote">Down
-                                                Vote</button>
                                             <button class="waves-effect btn black center writeTheory edit" id="edit"
                                                 value="{{this.id}}">Edit</button>
-                                            <button class="waves-effect btn black center writeTheory comment"
-                                                id="comment" value="{{this.id}}" href="/comment.html">Comment</button>
                                             <button class="waves-effect btn black center writeTheory delete" id="delete"
                                                 value="{{this.id}}">X</button>
                                         </div>
@@ -40,8 +38,8 @@
                                 {{/each}}
 
                             </div>
-                            <a class="waves-effect btn black writeTheory right commentButton" href="/comment.html"><i
-                                    class="material-icons right">chat_bubble_outline</i>Comment</a>
+                            <a class="waves-effect btn black writeTheory right commentButton modal-trigger"
+                                href="#modal3"><i class="material-icons right">chat_bubble_outline</i>Comment</a>
                         </div>
                     </div>
                 </div>
@@ -56,15 +54,11 @@
     </section>
 </main>
 
-<main></main>
-
-{{> comp/footer}}
-
-<!-- CREATE THEORY MODAL -->
-<div id="modal1" class="modal">
+<div id="modal3" class="modal">
     <div class="modal-content">
         <div class="row">
-            <div class="col s12">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
                 <label for="icon_prefix" id="author"></label>
             </div>
             <div class="input-field col s12 titleLabel">
@@ -87,11 +81,14 @@
     </div>
 </div>
 
+
+{{> comp/footer}}
+
+
 <!-- firebase -->
 <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
 <script src="js/firebase.js"></script>
-<script src="js/cms.js" type="text/javascript"></script>
-<script src="js/main.js" type="text/javascript"></script>
+<script src="js/comment.js" type="text/javascript"></script>
 
 
 <script>

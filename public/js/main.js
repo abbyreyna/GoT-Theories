@@ -60,6 +60,11 @@ $(document).ready(function() {
     handlePostDelete(temp);
   });
 
+  $(".comment").on("click", function(event) {
+    var temp = event.target.value;
+    window.location.href = "/comment?post_id=" + temp;
+  });
+
   // This function does an API call to delete posts
   function deletePost(id) {
     $.ajax({

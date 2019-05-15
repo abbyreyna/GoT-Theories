@@ -5,7 +5,6 @@ $(document).ready(function() {
       userName = user.displayName;
       getAuthors(userName);
       checkUserExists(uid);
-      getComments(postId);
     } else {
       //no user signed in
       uid = null;
@@ -17,34 +16,43 @@ $(document).ready(function() {
   var bodyInput = $("#body");
   var titleInput = $("#title");
   var cmsForm = $("#cms");
-  var authorSelect = $("#author");
+  var postId;
+
   // Adding an event listener for when the form is submitted
   $(cmsForm).on("click", handleFormSubmit);
   // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
   var url = window.location.search;
-  var postId;
+
+  if (url.indexOf("?post_id=") !== -1) {
+    postId = url.split("=")[1];
+    loadPostTitle(postId, "post");
+  }
+
   var authorId;
   // Sets a flag for whether or not we're updating a post to be false initially
   var updating = false;
 
   // If we have this section in our url, we pull out the post id from the url
   // In '?post_id=1', postId is 1
-  if (url.indexOf("?post_id=") !== -1) {
-    postId = url.split("=")[1];
-    getPostData(postId, "post");
-  }
 
-  function getComments(postId) {
-    $.get("/api/comment/" + postId, function(e) {
-      console.log(e);
-    });
-  }
   // Otherwise if we have an author_id in our url, preset the author select box to be our Author
   var checkUserExists = function(uid) {
     $.get("/api/authors/" + uid, function(e) {
       authorId = e.id;
     });
   };
+
+  if (url.indexOf("?post_id=") !== -1) {
+    postId = url.split("=")[1];
+  }
+
+  function loadPostTitle(postId) {
+    $.get("/api/posts/" + postId, function(data) {
+      $(".postIdNumber").text(data.id);
+      $(".postTitle").text(data.title);
+    });
+  }
+
   // Getting the authors, and their posts
 
   // A function for handling what happens when the form to create a new post is submitted
@@ -59,7 +67,8 @@ $(document).ready(function() {
     var newPost = {
       title: titleInput.val().trim(),
       body: bodyInput.val().trim(),
-      AuthorId: authorId
+      AuthorId: authorId,
+      PostId: postId
     };
     console.log(newPost);
     // If we're updating a post run updatePost to update a post
@@ -75,7 +84,8 @@ $(document).ready(function() {
   // Submits a new post and brings user to blog page upon completion
   function submitPost(post) {
     $.post("/api/comment", post, function() {
-      window.location.href = "/theory";
+      console.log(post);
+      window.location.href = "/comment";
     });
   }
 
@@ -118,51 +128,7 @@ $(document).ready(function() {
       url: "/api/comment",
       data: post
     }).then(function() {
-      window.location.href = "/theory";
+      window.location.href = "/comment";
     });
-  }
-
-  function createNewCommentRow(post) {
-    console.log(post);
-    var formattedDate = new Date(post.createdAt);
-    formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-    var newPostCard = $("<div>");
-    newPostCard.addClass("card");
-    var newPostCardHeading = $("<div>");
-    newPostCardHeading.addClass("card-title");
-    var deleteBtn = $("<button>");
-    deleteBtn.text("x");
-    deleteBtn.addClass("delete btn");
-    var editBtn = $("<button>");
-    editBtn.text("EDIT");
-    editBtn.addClass("edit btn btn-info");
-    var newPostTitle = $("<h2>");
-    var newPostDate = $("<small>");
-    var newPostAuthor = $("<h5>");
-    newPostAuthor.text("Written by: " + post.Author.author_name);
-    newPostAuthor.css({
-      float: "right",
-      color: "blue",
-      "margin-top": "-10px"
-    });
-    var newPostCardBody = $("<div>");
-    newPostCardBody.addClass("card-content");
-    var newPostBody = $("<p>");
-    newPostTitle.text(post.title + " ");
-    newPostBody.text(post.body);
-    newPostDate.text(formattedDate);
-    newPostTitle.append(newPostDate);
-    newPostCardHeading.append(deleteBtn);
-    newPostCardHeading.append(editBtn);
-    newPostCardHeading.append(upVoteBtn);
-    newPostCardHeading.append(dwnVoteBtn);
-    newPostCardHeading.append(chatBtn);
-    newPostCardHeading.append(newPostTitle);
-    newPostCardHeading.append(newPostAuthor);
-    newPostCardBody.append(newPostBody);
-    newPostCard.append(newPostCardHeading);
-    newPostCard.append(newPostCardBody);
-    newPostCard.data("post", post);
-    return newPostCard;
   }
 });
