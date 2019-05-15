@@ -62,7 +62,7 @@ $(document).ready(function() {
 
   $(".comment").on("click", function(event) {
     var temp = event.target.value;
-    window.location.href = "/comment?post_id=" + temp;
+    window.location.href = "/comment/" + temp;
   });
 
   // This function does an API call to delete posts

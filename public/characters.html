@@ -1,85 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Cinzel"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet" />
 
-    <!-- Materialize CDN -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <link rel="stylesheet" href="./styles/styles.css" />
-    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-    <title>Game of Thrones Theories | Characters</title>
-  </head>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+
+  <!-- Materialize CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+  <title>Game of Thrones Theories | Characters</title>
+</head>
+
 <body>
-        <header>
-                <nav class="nav-wrapper black">
-                  <div class="container">
-                    <a href="" class="sidenav-trigger" data-target="mobile-menu">
-                      <i class="material-icons">menu</i>
-                    </a>
-                    <ul class="right hide-on-med-and-down">
-                      <li><a href="/main.html">Home</a></li>
-                      <li>|</li>
-                      <li><a href="/theory">Theories</a></li>
-                      <li>|</li>
-                      <li><a href="/api">API</a></li>
-                    </ul>
-                    <ul class="sidenav black" id="mobile-menu">
-                      <h3>Menu</h3>
-                      <li><a href="/theory" class="white-text">Theories</a></li>
-                      <li><a href="/characters" class="white-text">Characters</a></li>
-                      <li><a href="/api" class="white-text">API</a></li>
-                    </ul>
-                  </div>
-                </nav>
-                <div class="container white-text center section">
-                        <div class="row">
-                          <div class="col s12 l12 trans">
-                            <div class="push">
-                              <h2>Game of Thrones Characters</h2>
-                              <h5>
-                                Here you can browse through all of the characters from the show and view their bios.
-                              </h5>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </header>
-<div class="container">
+  <header>
+    <nav class="nav-wrapper black">
+      <div class="container">
+        <a href="" class="sidenav-trigger" data-target="mobile-menu">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/main.html">Home</a></li>
+          <li>|</li>
+          <li><a href="/theory">Theories</a></li>
+          <li>|</li>
+          <li><a href="/api">API</a></li>
+        </ul>
+        <ul class="sidenav black" id="mobile-menu">
+          <h3>Menu</h3>
+          <li><a href="/theory" class="white-text">Theories</a></li>
+          <li><a href="/characters" class="white-text">Characters</a></li>
+          <li><a href="/api" class="white-text">API</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container white-text center section">
+      <div class="row">
+        <div class="col s12 l12 trans">
+          <div class="push">
+            <h2>Game of Thrones Characters</h2>
+            <h5>
+              Here you can browse through all of the characters from the show and view their bios.
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
     <!--TEST CODE-->
     <h1>Characters</h1>
 
-    <!-- Rendered Buttons will get Dumped Here  -->
-    <div id="buttons-view"></div>
+    <div class="container">
 
-    <!-- Characters will Get Dumped Here -->
-    <div id="buttons-view"></div>
+      <h1 id="tableName"></h1>
+      <div id="div1"></div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="row" id="name">Name</th>
+            <th scope="row" id="culture">Culture</th>
+            <th scope="row" id="born">Born</th>
+            <th scope="row" id="died">Died</th>
+            <th scope="row" id="titles">Titles</th>
+            <th scope="row" id="aliases">Aliases</th>
+            <th scope="row" id="allegiance">Allegiance</th>
+            <th scope="row" id="playedBy">Played By</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+      </table>
+    </div>
 
 
-    
 </body>
+
 </html>
 <script src="js/characters.js"></script>
