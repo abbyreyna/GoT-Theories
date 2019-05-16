@@ -55,11 +55,14 @@ $(document).ready(function() {
   $(".edit").on("click", function(event) {
     handlePostEdit(event.target.value);
   });
+
   $(".delete").on("click", function(event) {
     var temp = event.target.value;
     handlePostDelete(temp);
   });
-
+  $(".editComment").on("click", function(event) {
+    handleCommentEdit(event.target.value);
+  });
   $(".comment").on("click", function(event) {
     var temp = event.target.value;
     window.location.href = "/comment/" + temp;
@@ -83,5 +86,8 @@ $(document).ready(function() {
   // This function figures out which post we want to edit and takes it to the appropriate url
   function handlePostEdit(id) {
     window.location.href = "/cms?post_id=" + id;
+  }
+  function handleCommentEdit(id) {
+    window.location.href = "/cms?comment_id=" + id;
   }
 });

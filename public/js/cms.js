@@ -4,7 +4,7 @@ $(document).ready(function() {
       uid = user.uid;
       userName = user.displayName;
       getAuthors(userName, uid);
-      checkUserExists(uid);
+      checkUserExists(uid, userName);
     } else {
       //no user signed in
       uid = null;
@@ -21,6 +21,7 @@ $(document).ready(function() {
   // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
   var url = window.location.search;
   var postId;
+  var commentId;
   var authorId;
   // Sets a flag for whether or not we're updating a post to be false initially
   var updating = false;
@@ -30,12 +31,16 @@ $(document).ready(function() {
   if (url.indexOf("?post_id=") !== -1) {
     postId = url.split("=")[1];
     getPostData(postId, "post");
+  } else if (url.indexOf("?comment_id=") !== -1) {
+    commentId = url.split("=")[1];
+    getPostData(commentId, "comment");
   }
 
   // Otherwise if we have an author_id in our url, preset the author select box to be our Author
-  var checkUserExists = function(uid) {
+  var checkUserExists = function(uid, userName) {
     $.get("/api/authors/" + uid, function(e) {
       authorId = e.id;
+      $("#author").text(userName);
     });
   };
   // Getting the authors, and their posts
@@ -60,6 +65,8 @@ $(document).ready(function() {
     if (updating) {
       newPost.id = postId;
       updatePost(newPost);
+    } else if (updatingComment) {
+      updateComment(newPost);
     } else {
       submitPost(newPost);
     }
@@ -78,9 +85,13 @@ $(document).ready(function() {
     switch (type) {
       case "post":
         queryUrl = "/api/posts/" + id;
+        console.log("i fired on post update");
+        updatingPost = true;
         break;
-      case "author":
-        queryUrl = "/api/authors/" + id;
+      case "comment":
+        queryUrl = "/api/comment/" + id;
+        console.log("i fired on comment update");
+        updatingComment = true;
         break;
       default:
         return;
@@ -112,6 +123,15 @@ $(document).ready(function() {
       data: post
     }).then(function() {
       window.location.href = "/theory";
+    });
+  }
+  function updateComment(post) {
+    $.ajax({
+      method: "PUT",
+      url: "/api/comment",
+      data: post
+    }).then(function() {
+      window.location.href = "/post/" + postId;
     });
   }
 });
