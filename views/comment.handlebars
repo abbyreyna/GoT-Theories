@@ -4,7 +4,7 @@
     <section>
         <div class="container section">
             <div class="row">
-                <div class="col l9 m9 s12">
+                <div class="col s12">
                     <div id="theoryDiv" class="white-text center">
                         <span class="gotTheoryLogo">GoT Comments?</span>
                         <div id="theoryModal"><a class="waves-effect btn modal-trigger black left writeTheory"
@@ -27,8 +27,6 @@
                                 {{> comp/comments comments=Comment}}
 
                             </div>
-                            <a class="waves-effect btn black writeTheory right commentButton modal-trigger"
-                                href="#modal3"><i class="material-icons right">chat_bubble_outline</i>Comment</a>
                         </div>
                     </div>
                 </div>
@@ -39,20 +37,18 @@
 <div id="modal3" class="modal">
     <div class="modal-content">
         <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">account_circle</i>
+            <div class="col s12">
                 <label for="icon_prefix" id="author"></label>
             </div>
             <div class="input-field col s12 titleLabel">
-                <i class="material-icons prefix">title</i>
                 <input id="title" type="text">
                 <label for="icon_prefix" class="black-text">Title:</label>
             </div>
             <form class="col s12">
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 titleLabel">
                         <textarea id="body" class="materialize-textarea"></textarea>
-                        <label for="textarea1" class="black-text">Theory:</label>
+                        <label for="icon_prefix" class="black-text">Comment:</label>
                     </div>
                 </div>
             </form>
