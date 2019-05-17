@@ -16,15 +16,16 @@
 
                                 {{#each posts}}
                                 <div class="post card">
-                                    <div class="timeCreated">{{this.createdAt}}</div>
                                     <div class="card-title">{{this.title}}</div>
                                     <div class="card-content">
                                         <span>{{this.body}}</span>
 
                                         <div class="voting center">
-                                            <button class="waves-effect btn black center writeTheory upVote" id="like" value="{{this.id}}">Up
+                                            <button class="waves-effect btn black center writeTheory upVote" id="like"
+                                                value="{{this.id}}">Up
                                                 Vote</button>
-                                            <button class="waves-effect btn black center writeTheory dwnVote" id="dislike" value="{{this.id}}>Down
+                                            <button class="waves-effect btn black center writeTheory dwnVote"
+                                                id="dislike" value="{{this.id}}">Down
                                                 Vote</button>
                                             <button class="waves-effect btn black center writeTheory edit" id="edit"
                                                 value="{{this.id}}">Edit</button>
@@ -40,11 +41,7 @@
                                     </div>
                                 </div>
                                 {{/each}}
-
                             </div>
-
-                            <a class="waves-effect btn black writeTheory right commentButton" href="/comment.html"><i
-                                    class="material-icons right">chat_bubble_outline</i>Comment</a>
                         </div>
                     </div>
                 </div>
@@ -52,8 +49,6 @@
 
     </section>
 </main>
-
-<main></main>
 
 {{> comp/footer}}
 
@@ -64,9 +59,9 @@
             <div class="col s12">
                 <label for="icon_prefix" id="author"></label>
                 <div class="input-field col s12 titleLabel">
-                <input id="title" type="text">
-                <label for="icon_prefix" class="black-text">Title:</label>
-            </div>
+                    <input id="title" type="text">
+                    <label for="icon_prefix" class="black-text">Title:</label>
+                </div>
             </div>
             <form class="col s12">
                 <div class="row">
