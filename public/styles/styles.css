@@ -25,8 +25,18 @@ main {
   padding: 15px;
 }
 
+.commentRow {
+  background: rgba(0, 0, 0, 0.616);
+  min-height: 100px;
+  padding: 25px;
+}
+
 #writeLogo {
   line-height: 35px;
+}
+
+.writtenBy {
+  line-height: 45px;
 }
 
 #postDiv {
@@ -73,6 +83,18 @@ main {
   margin-top: -15px;
 }
 
+#Comment {
+  line-height: 35px;
+}
+
+#submitTheory {
+  font-family: "Cinzel", serif;
+}
+
+#goTo {
+  margin-top: 25px;
+}
+
 #pencil {
   line-height: 35px;
 }
@@ -80,10 +102,13 @@ main {
 .card {
   background: rgba(0, 0, 0, 0.693);
   color: #fff;
+  margin-top: 30px;
 }
+
 .form-control {
   color: #fff;
 }
+
 .small {
   font-size: 12px;
 }
@@ -92,11 +117,9 @@ main {
   .gotTheoryLogo {
     font-size: 26px;
   }
-
   .pollText {
     font-size: 18px;
   }
-
   .sideNav {
     background: black;
   }

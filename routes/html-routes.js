@@ -36,7 +36,7 @@ module.exports = function(app) {
   app.get("/theory", function(req, res) {
     db.Post.findAll({}).then(function(data) {
 
-      // console.log(data);      
+      console.log(data);      
 
       var temp = { 
         posts: data
