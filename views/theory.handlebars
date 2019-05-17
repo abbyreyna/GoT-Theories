@@ -1,12 +1,10 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-<link rel="stylesheet" href="./styles/styles.css" />
-
 {{> comp/nav}}
 
 <main>
     <section>
         <div class="container section">
             <div class="row">
+
                 <div class="col l12 m12 s12">
                     <div id="theoryDiv" class="white-text center">
                         <span class="gotTheoryLogo">GoT Theories?</span>
@@ -15,23 +13,24 @@
                         </div>
                         <div id="theoriesGoHere" class="section">
                             <div class="row section">
+
                                 {{#each posts}}
-
-                                <div class="post card" id="postDiv">
-
+                                <div class="post card">
+                                    <div class="timeCreated">{{this.createdAt}}</div>
                                     <div class="card-title">{{this.title}}</div>
                                     <div class="card-content">
                                         <span>{{this.body}}</span>
 
                                         <div class="voting center">
-                                            <button class="waves-effect btn black center writeTheory upVote">Up
+                                            <button class="waves-effect btn black center writeTheory upVote" id="like" value="{{this.id}}">Up
                                                 Vote</button>
-                                            <button class="waves-effect btn black center writeTheory dwnVote">Down
+                                            <button class="waves-effect btn black center writeTheory dwnVote" id="dislike" value="{{this.id}}>Down
                                                 Vote</button>
                                             <button class="waves-effect btn black center writeTheory edit" id="edit"
                                                 value="{{this.id}}">Edit</button>
                                             <button class="waves-effect btn black center writeTheory comment"
-                                                id="comment" value="{{this.id}}" href="/comment.html">Comment</button>
+                                                id="comment" value="{{this.id}}"
+                                                href="/comment/{{this.id}}">Comment</button>
                                             <button class="waves-effect btn black center writeTheory delete" id="delete"
                                                 value="{{this.id}}">X</button>
                                         </div>
@@ -43,8 +42,14 @@
                                 {{/each}}
 
                             </div>
+
+                            <a class="waves-effect btn black writeTheory right commentButton" href="/comment.html"><i
+                                    class="material-icons right">chat_bubble_outline</i>Comment</a>
                         </div>
                     </div>
+                </div>
+            </div>
+
     </section>
 </main>
 

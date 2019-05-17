@@ -78,7 +78,10 @@ main {
 }
 
 .card {
-  background: rgba(0, 0, 0, 0.493);
+  background: rgba(0, 0, 0, 0.693);
+  color: #fff;
+}
+.form-control {
   color: #fff;
 }
 .small {

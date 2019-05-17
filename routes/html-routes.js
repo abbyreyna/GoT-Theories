@@ -35,32 +35,36 @@ module.exports = function(app) {
 
   app.get("/theory", function(req, res) {
     db.Post.findAll({}).then(function(data) {
+
       // console.log(data);      
 
       var temp = { 
         posts: data
        };
-      
+
       res.render("theory", temp);
     });
   });
 
-  app.get("/comment?:id", function(req, res) {
+  app.get("/comment/:id", function(req, res) {
     var postId = req.params.id;
-    res.json(res);
-    // if (url.indexOf("?post_id=") !== -1) {
-    //   postId = url.split("=")[1];
-    // }
-    console.log(postId);
 
-    // db.Comment.findOne({
-    //   where: {
-    //     postId: postId
-    //   },
-    //   include: [db.Author]
-    // }).then(function(dbPost) {
-    //   res.json(dbPost);
-    // });
+    db.Comment.findAll({
+      where: {
+        postId: postId
+      },
+      include: [db.Author, db.Post]
+    }).then(function(dbComment) {
+      // console.log(dbComment);
+      // res.json(dbComment);
+      db.Post.findOne({
+        where: {
+          id: postId
+        }
+      }).then(function(data) {
+        res.render("comment", { Comment: dbComment, Post: data });
+      });
+    });
   });
 
   // character route loads characters.html

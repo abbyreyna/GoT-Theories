@@ -21,11 +21,12 @@ $(document).ready(function() {
   // Adding an event listener for when the form is submitted
   $(cmsForm).on("click", handleFormSubmit);
   // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
-  var url = window.location.search;
 
-  if (url.indexOf("?post_id=") !== -1) {
-    postId = url.split("=")[1];
-    loadPostTitle(postId, "post");
+  var url = window.location.href;
+
+  if (url.indexOf("comment/") !== -1) {
+    postId = url.split("comment/")[1];
+    console.log(postId);
   }
 
   var authorId;
@@ -41,10 +42,6 @@ $(document).ready(function() {
       authorId = e.id;
     });
   };
-
-  if (url.indexOf("?post_id=") !== -1) {
-    postId = url.split("=")[1];
-  }
 
   function loadPostTitle(postId) {
     $.get("/api/posts/" + postId, function(data) {
@@ -85,7 +82,7 @@ $(document).ready(function() {
   function submitPost(post) {
     $.post("/api/comment", post, function() {
       console.log(post);
-      window.location.href = "/comment";
+      window.location.href = "/comment/" + postId;
     });
   }
 
@@ -128,7 +125,7 @@ $(document).ready(function() {
       url: "/api/comment",
       data: post
     }).then(function() {
-      window.location.href = "/comment";
+      window.location.href = "/comment/" + postId;
     });
   }
 });
