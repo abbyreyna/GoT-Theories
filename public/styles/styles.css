@@ -10,8 +10,6 @@ body {
   background: url(../img/GoT.png);
   background-size: cover;
   background-position: center;
-  /* min-height: 1000px; */
-
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -27,9 +25,17 @@ main {
   padding: 15px;
 }
 
+#writeLogo {
+  line-height: 35px;
+}
+
+#postDiv {
+  margin: 30px;
+  background: rgba(0, 0, 0, 0.884);
+}
+
 #pollDiv {
   background: rgba(0, 0, 0, 0.493);
-  /* height: 500px; */
   padding: 15px;
 }
 
@@ -44,7 +50,6 @@ main {
 
 .sideNav {
   background: rgba(0, 0, 0, 0.397);
-  /* background: black; */
 }
 
 .menuButton {
@@ -70,38 +75,6 @@ main {
 
 #pencil {
   line-height: 35px;
-}
-
-.input-field label {
-  color: #000;
-}
-
-/* label focus color */
-.input-field input[type="text"]:focus + label {
-  color: #000;
-}
-/* label underline focus color */
-.input-field input[type="text"]:focus {
-  border-bottom: 1px solid #000;
-  box-shadow: 0 1px 0 0 #000;
-}
-/* valid color */
-.input-field input[type="text"].valid {
-  border-bottom: 1px solid #000;
-  box-shadow: 0 1px 0 0 #000;
-}
-/* invalid color */
-.input-field input[type="text"].invalid {
-  border-bottom: 1px solid #000;
-  box-shadow: 0 1px 0 0 #000;
-}
-/* icon prefix focus color */
-.input-field .prefix.active {
-  color: #000;
-}
-
-.titleLabel {
-  margin-top: 40px;
 }
 
 .card {
