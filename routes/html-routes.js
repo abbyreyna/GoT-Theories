@@ -6,6 +6,7 @@
 // =============================================================
 var path = require("path");
 var db = require("../models");
+var moment = require("moment");
 
 // Routes
 // =============================================================
@@ -34,7 +35,13 @@ module.exports = function(app) {
 
   app.get("/theory", function(req, res) {
     db.Post.findAll({}).then(function(data) {
-      var temp = { posts: data };
+
+      console.log(data);      
+
+      var temp = { 
+        posts: data
+       };
+
       res.render("theory", temp);
     });
   });
