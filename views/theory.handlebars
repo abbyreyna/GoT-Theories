@@ -4,26 +4,28 @@
     <section>
         <div class="container section">
             <div class="row">
-                <div class="col s12">
+
+                <div class="col l12 m12 s12">
                     <div id="theoryDiv" class="white-text center">
                         <span class="gotTheoryLogo">GoT Theories?</span>
                         <div id="theoryModal"><a class="waves-effect btn modal-trigger black left writeTheory"
-                                href="#modal1"><i class="material-icons left">create</i>Write Theory</a></div>
+                                href="#modal1"><i class="material-icons left" id="writeLogo">create</i>Write Theory</a>
+                        </div>
                         <div id="theoriesGoHere" class="section">
                             <div class="row section">
 
-
                                 {{#each posts}}
                                 <div class="post card">
-                                    <div class="timeCreated">{{this.createdAt}}</div>
                                     <div class="card-title">{{this.title}}</div>
                                     <div class="card-content">
                                         <span>{{this.body}}</span>
 
                                         <div class="voting center">
-                                            <button class="waves-effect btn black center writeTheory upVote">Up
+                                            <button class="waves-effect btn black center writeTheory upVote" id="like"
+                                                value="{{this.id}}">Up
                                                 Vote</button>
-                                            <button class="waves-effect btn black center writeTheory dwnVote">Down
+                                            <button class="waves-effect btn black center writeTheory dwnVote"
+                                                id="dislike" value="{{this.id}}">Down
                                                 Vote</button>
                                             <button class="waves-effect btn black center writeTheory edit" id="edit"
                                                 value="{{this.id}}">Edit</button>
@@ -34,21 +36,19 @@
                                                 value="{{this.id}}">X</button>
                                         </div>
 
+                                        <div class="timeCreated">{{timeStamp this.createdAt}}</div>
+
                                     </div>
                                 </div>
                                 {{/each}}
-
                             </div>
-                            <a class="waves-effect btn black writeTheory right commentButton" href="/comment.html"><i
-                                    class="material-icons right">chat_bubble_outline</i>Comment</a>
                         </div>
                     </div>
                 </div>
             </div>
+
     </section>
 </main>
-
-<main></main>
 
 {{> comp/footer}}
 
@@ -58,10 +58,12 @@
         <div class="row">
             <div class="col s12">
                 <label for="icon_prefix" id="author"></label>
+
             </div>
             <div class="input-field col s12 titleLabel">
                 <input id="title" type="text">
                 <label for="icon_prefix" class="black-text">Title:</label>
+
             </div>
             <form class="col s12">
                 <div class="row">
