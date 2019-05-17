@@ -6,7 +6,9 @@
 // =============================================================
 var express = require("express");
 var exphbs = require("express-handlebars");
+var moment = require("moment");
 var path = require("path");
+
 
 // Sets up the Express App
 // =============================================================
@@ -15,13 +17,22 @@ var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
 var db = require("./models");
+var hbs = exphbs.create({
+  defaultLayout: "main",
+  helpers: {
+    timeStamp: function(time) {
+      return moment(time).format('LLL');
+    }
+  }
+});
+
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Set Handlebars as the default templating engine.
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 // Static directory
