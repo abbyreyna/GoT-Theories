@@ -3,8 +3,8 @@ $(document).ready(function() {
     if (user) {
       uid = user.uid;
       userName = user.displayName;
-      getAuthors(userName, uid);
-      checkUserExists(uid, userName);
+      getAuthors(userName);
+      checkUserExists(uid);
     } else {
       //no user signed in
       uid = null;
@@ -16,33 +16,40 @@ $(document).ready(function() {
   var bodyInput = $("#body");
   var titleInput = $("#title");
   var cmsForm = $("#cms");
-  // Adding an event listener for when the form is submitted
-  $(cmsForm).on("submit", handleFormSubmit);
-  // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
-  var url = window.location.search;
   var postId;
-  var commentId;
+
+  // Adding an event listener for when the form is submitted
+  $(cmsForm).on("click", handleFormSubmit);
+  // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
+
+  var url = window.location.href;
+
+  if (url.indexOf("comment/") !== -1) {
+    postId = url.split("comment/")[1];
+    console.log(postId);
+  }
+
   var authorId;
   // Sets a flag for whether or not we're updating a post to be false initially
   var updating = false;
 
   // If we have this section in our url, we pull out the post id from the url
   // In '?post_id=1', postId is 1
-  if (url.indexOf("?post_id=") !== -1) {
-    postId = url.split("=")[1];
-    getPostData(postId, "post");
-  } else if (url.indexOf("?comment_id=") !== -1) {
-    commentId = url.split("=")[1];
-    getPostData(commentId, "comment");
-  }
 
   // Otherwise if we have an author_id in our url, preset the author select box to be our Author
-  var checkUserExists = function(uid, userName) {
+  var checkUserExists = function(uid) {
     $.get("/api/authors/" + uid, function(e) {
       authorId = e.id;
-      $("#author").text(userName);
     });
   };
+
+  function loadPostTitle(postId) {
+    $.get("/api/posts/" + postId, function(data) {
+      $(".postIdNumber").text(data.id);
+      $(".postTitle").text(data.title);
+    });
+  }
+
   // Getting the authors, and their posts
 
   // A function for handling what happens when the form to create a new post is submitted
@@ -57,7 +64,8 @@ $(document).ready(function() {
     var newPost = {
       title: titleInput.val().trim(),
       body: bodyInput.val().trim(),
-      AuthorId: authorId
+      AuthorId: authorId,
+      PostId: postId
     };
     console.log(newPost);
     // If we're updating a post run updatePost to update a post
@@ -65,8 +73,6 @@ $(document).ready(function() {
     if (updating) {
       newPost.id = postId;
       updatePost(newPost);
-    } else if (updatingComment) {
-      updateComment(newPost);
     } else {
       submitPost(newPost);
     }
@@ -74,8 +80,9 @@ $(document).ready(function() {
 
   // Submits a new post and brings user to blog page upon completion
   function submitPost(post) {
-    $.post("/api/posts", post, function() {
-      window.location.href = "/theory";
+    $.post("/api/comment", post, function() {
+      console.log(post);
+      window.location.href = "/comment/" + postId;
     });
   }
 
@@ -83,15 +90,11 @@ $(document).ready(function() {
   function getPostData(id, type) {
     var queryUrl;
     switch (type) {
-      case "post":
-        queryUrl = "/api/posts/" + id;
-        console.log("i fired on post update");
-        updatingPost = true;
-        break;
       case "comment":
         queryUrl = "/api/comment/" + id;
-        console.log("i fired on comment update");
-        updatingComment = true;
+        break;
+      case "post":
+        queryUrl = "/api/post/" + id;
         break;
       default:
         return;
@@ -119,19 +122,10 @@ $(document).ready(function() {
   function updatePost(post) {
     $.ajax({
       method: "PUT",
-      url: "/api/posts",
-      data: post
-    }).then(function() {
-      window.location.href = "/theory";
-    });
-  }
-  function updateComment(post) {
-    $.ajax({
-      method: "PUT",
       url: "/api/comment",
       data: post
     }).then(function() {
-      window.location.href = "/post/" + postId;
+      window.location.href = "/comment/" + postId;
     });
   }
 });

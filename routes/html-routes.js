@@ -5,6 +5,7 @@
 // Dependencies
 // =============================================================
 var path = require("path");
+var db = require("../models");
 
 // Routes
 // =============================================================
@@ -29,5 +30,38 @@ module.exports = function(app) {
   // authors route loads author-manager.html
   app.get("/authors", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/author-manager.html"));
+  });
+
+  app.get("/theory", function(req, res) {
+    db.Post.findAll({}).then(function(data) {
+      var temp = { posts: data };
+      res.render("theory", temp);
+    });
+  });
+
+  app.get("/comment/:id", function(req, res) {
+    var postId = req.params.id;
+
+    db.Comment.findAll({
+      where: {
+        postId: postId
+      },
+      include: [db.Author, db.Post]
+    }).then(function(dbComment) {
+      // console.log(dbComment);
+      // res.json(dbComment);
+      db.Post.findOne({
+        where: {
+          id: postId
+        }
+      }).then(function(data) {
+        res.render("comment", { Comment: dbComment, Post: data });
+      });
+    });
+  });
+
+  // character route loads characters.html
+  app.get("/characters", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/characters.html"));
   });
 };

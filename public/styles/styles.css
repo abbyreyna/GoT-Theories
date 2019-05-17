@@ -2,25 +2,122 @@
   line-height: 2.5;
 }
 
-body {
-  font-family: 'Cinzel', serif;
+html {
+  font-family: "Cinzel", serif;
 }
 
-header {
+body {
   background: url(../img/GoT.png);
   background-size: cover;
   background-position: center;
-  min-height: 1000px;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+#theoryDiv {
+  background: rgba(0, 0, 0, 0.493);
+  min-height: 100px;
+  padding: 15px;
+}
+
+#pollDiv {
+  background: rgba(0, 0, 0, 0.493);
+  padding: 15px;
 }
 
 .trans {
-  background: black;
-  opacity: .8;
-  height: 250px;
+  background: rgba(0, 0, 0, 0.548);
+  min-height: 100px;
+}
+
+.push {
+  padding: 25px;
+}
+
+.sideNav {
+  background: rgba(0, 0, 0, 0.397);
+}
+
+.menuButton {
+  color: #881414;
+  margin-left: 15px;
+}
+
+.burgerButton {
+  padding: 20px;
+}
+
+.gotTheoryLogo {
+  font-size: 32px;
+}
+
+.writeTheory:hover {
+  color: #881414;
+}
+
+.commentButton {
+  margin-top: -15px;
+}
+
+#pencil {
+  line-height: 35px;
+}
+
+.input-field label {
+  color: #000;
+}
+
+.input-field input[type="text"]:focus + label {
+  color: #000;
+}
+.input-field input[type="text"]:focus {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+.input-field input[type="text"].valid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+.input-field input[type="text"].invalid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+.input-field .prefix.active {
+  color: #000;
+}
+
+.titleLabel {
+  margin-top: 40px;
+}
+#body {
+  border-bottom: none;
+}
+.card {
+  background: rgba(0, 0, 0, 0.693);
+  color: #fff;
+}
+.form-control {
+  color: #fff;
+}
+.small {
+  font-size: 12px;
 }
 
 @media screen and (max-width: 670px) {
-  header {
-      min-height: 500px;
+  .gotTheoryLogo {
+    font-size: 26px;
+  }
+
+  .pollText {
+    font-size: 18px;
+  }
+
+  .sideNav {
+    background: black;
   }
 }
