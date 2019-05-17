@@ -52,6 +52,7 @@ module.exports = function(app) {
 
   // DELETE route for deleting posts
   app.delete("/api/posts/:id", function(req, res) {
+    console.log(req.params.id);
     db.Post.destroy({
       where: {
         id: req.params.id
@@ -63,6 +64,7 @@ module.exports = function(app) {
 
   // PUT route for updating posts
   app.put("/api/posts", function(req, res) {
+    console.log(req.body);
     db.Post.update(req.body, {
       where: {
         id: req.body.id

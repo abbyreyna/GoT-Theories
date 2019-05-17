@@ -63,6 +63,7 @@ module.exports = function(app) {
 
   // PUT route for updating posts
   app.put("/api/comment", function(req, res) {
+    console.log(req.body);
     db.Comment.update(req.body, {
       where: {
         id: req.body.id
