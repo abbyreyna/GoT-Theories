@@ -68,25 +68,41 @@ $(document).ready(function() {
     window.location.href = "/comment/" + temp;
   });
 
+  $(".deleteComment").on("click", function(event) {
+    var temp = event.target.value;
+    handleDeleteEvent(temp);
+  });
+
   // This function does an API call to delete posts
   function deletePost(id) {
     $.ajax({
       method: "DELETE",
       url: "/api/posts/" + id
     }).then(function() {
-      getPosts(postCategorySelect.val());
+      window.location.href = "/theory";
     });
   }
-
+  function deleteCommentNow(id) {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/comment/" + id
+    }).then(function() {
+      window.location.href = "/theory";
+    });
+  }
   // This function figures out which post we want to delete and then calls deletePost
   function handlePostDelete(id) {
     deletePost(id);
+  }
+  function handleDeleteEvent(id) {
+    deleteCommentNow(id);
   }
 
   // This function figures out which post we want to edit and takes it to the appropriate url
   function handlePostEdit(id) {
     window.location.href = "/cms?post_id=" + id;
   }
+
   function handleCommentEdit(id) {
     window.location.href = "/cms?comment_id=" + id;
   }
