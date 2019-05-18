@@ -94,6 +94,7 @@ $(document).ready(function () {
         console.log(event);
         // Reload the page to get the updated list
         location.reload();
+        
       });
   });
 
