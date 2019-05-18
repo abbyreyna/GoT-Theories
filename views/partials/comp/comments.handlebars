@@ -1,6 +1,6 @@
 {{#each comments}}
 <div class="post card">
-    <div class="timeCreated">{{this.createdAt}}</div>
+    <div class="timeCreated">{{timeStamp this.createdAt}}</div>
     <div class="card-title">{{this.title}}</div>
     <div class="card-content">
         <span>{{this.body}}</span>
