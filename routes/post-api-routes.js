@@ -73,4 +73,10 @@ module.exports = function(app) {
       res.json(dbPost);
     });
   });
+
+  app.post("/api/votes", function(req, res) {
+    db.Vote.create(req.body).then(function(dbVote) {
+      res.json(dbVote);
+    });
+  });
 };
