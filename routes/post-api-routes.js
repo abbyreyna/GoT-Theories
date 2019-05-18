@@ -22,7 +22,7 @@ module.exports = function(app) {
     // In this case, just db.Author
     db.Post.findAll({
       where: query,
-      include: [db.Author]
+      include: [db.Author, db.Vote]
     }).then(function(dbPost) {
       res.json(dbPost);
     });
@@ -71,6 +71,12 @@ module.exports = function(app) {
       }
     }).then(function(dbPost) {
       res.json(dbPost);
+    });
+  });
+
+  app.post("/api/votes", function(req, res) {
+    db.Vote.create(req.body).then(function(dbVote) {
+      res.json(dbVote);
     });
   });
 };

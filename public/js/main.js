@@ -1,13 +1,13 @@
 var mainApp = {};
 
-$(document).ready(function() {
+$(document).ready(function () {
   /* global moment */
 
   var firebase = app_firebase;
   var uid = null;
   var userName = "";
 
-  firebase.auth().onAuthStateChanged(function(user) {
+  firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       uid = user.uid;
       userName = user.displayName;
@@ -25,8 +25,8 @@ $(document).ready(function() {
   mainApp.logOut = logOut;
   $("#signOut").on("click", mainApp.logOut);
 
-  var checkUserExists = function(userName, uid) {
-    $.get("/api/authors/" + uid, function(e) {
+  var checkUserExists = function (userName, uid) {
+    $.get("/api/authors/" + uid, function (e) {
       if (e !== null) {
       } else {
         createAuthor(userName, uid);
@@ -34,7 +34,7 @@ $(document).ready(function() {
     });
   };
 
-  var createAuthor = function(userName, uid) {
+  var createAuthor = function (userName, uid) {
     var newAuthor = {
       author_name: userName,
       uid: uid
@@ -45,32 +45,80 @@ $(document).ready(function() {
     $.ajax("/api/authors", {
       method: "POST",
       data: newAuthor
-    }).then(function() {
+    }).then(function () {
       console.log("Added new authors");
     });
   };
 
   // Our CMS Functions
 
-  $(".edit").on("click", function(event) {
+  $(".edit").on("click", function (event) {
     handlePostEdit(event.target.value);
   });
 
-  $(".delete").on("click", function(event) {
+  $(".delete").on("click", function (event) {
     var temp = event.target.value;
     handlePostDelete(temp);
   });
-  $(".editComment").on("click", function(event) {
+  $(".editComment").on("click", function (event) {
     handleCommentEdit(event.target.value);
   });
-  $(".comment").on("click", function(event) {
+  $(".comment").on("click", function (event) {
     var temp = event.target.value;
     window.location.href = "/comment/" + temp;
   });
 
-  $(".deleteComment").on("click", function(event) {
+  $(".deleteComment").on("click", function (event) {
     var temp = event.target.value;
     handleDeleteEvent(temp);
+  });
+
+
+  $("#like").on("click", function (event) {
+    event.preventDefault();
+    var id = event.target.value;
+
+    var uLike = {
+      likes: 1,
+      dislikes: 0,
+      hasVoted: true,
+      PostId: id
+    };
+
+    // Send the PUT request.
+    $.ajax("/api/votes", {
+      method: "POST",
+      data: uLike
+    }).then(
+      function (event) {
+        console.log(event);
+        // Reload the page to get the updated list
+        location.reload();
+        
+      });
+  });
+
+  $("#dislike").on("click", function (event) {
+    event.preventDefault();
+    var id = event.target.value;
+
+    var uLike = {
+      likes: 1,
+      dislikes: 0,
+      hasVoted: true,
+      PostId: id
+    };
+
+    // Send the PUT request.
+    $.ajax("/api/votes", {
+      method: "POST",
+      data: uLike
+    }).then(
+      function (event) {
+        console.log(event);
+        // Reload the page to get the updated list
+        location.reload();
+      });
   });
 
   // This function does an API call to delete posts
@@ -78,7 +126,7 @@ $(document).ready(function() {
     $.ajax({
       method: "DELETE",
       url: "/api/posts/" + id
-    }).then(function() {
+    }).then(function () {
       window.location.href = "/theory";
     });
   }
@@ -86,7 +134,7 @@ $(document).ready(function() {
     $.ajax({
       method: "DELETE",
       url: "/api/comment/" + id
-    }).then(function() {
+    }).then(function () {
       window.location.href = "/theory";
     });
   }

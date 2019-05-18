@@ -39,7 +39,8 @@ module.exports = function(app) {
       console.log(data);      
 
       var temp = { 
-        posts: data
+        posts: data,
+        votes: data
        };
 
       res.render("theory", temp);

@@ -16,15 +16,16 @@
 
                                 {{#each posts}}
                                 <div class="post card">
+                                    <div id="likes"></div>
                                     <div class="card-title">{{this.title}}</div>
                                     <div class="card-content">
                                         <span>{{this.body}}</span>
 
                                         <div class="voting center">
-                                            <button class="waves-effect btn black center writeTheory upVote" id="like"
+                                            <button type="submit" class="waves-effect btn black center writeTheory upVote" id="like"
                                                 value="{{this.id}}">Up
                                                 Vote</button>
-                                            <button class="waves-effect btn black center writeTheory dwnVote"
+                                            <button type="submit" class="waves-effect btn black center writeTheory dwnVote"
                                                 id="dislike" value="{{this.id}}">Down
                                                 Vote</button>
                                             <button class="waves-effect btn black center writeTheory edit" id="edit"
