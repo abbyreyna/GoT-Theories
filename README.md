@@ -8,7 +8,7 @@ My team and I were tasked to design and build our first full-stack web applicati
 GoT Theories was created for the impassioned GoT fans that have something to say about the show! 
 Simply create a login and begin letting the world know what you think really happened in the show.
 
-[![GoT-Theories](https://i.ibb.co/k9mWg9S/gottheories.png)]
+![GoT-Theories](https://i.ibb.co/k9mWg9S/gottheories.png)
 
 
 
